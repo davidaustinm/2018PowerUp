@@ -328,27 +328,25 @@ jmax *= deltat**3
 d = 144.0
 speedfactor = 0.4
 
-K = [[0,0], [d/2,0], [d, d/2], [d,d], [d, 3*d/2], [3*d/2, 2*d], [2*d,2*d]]
-
-K = [[0,0], [d/4,0], [d/2,0], [7*d/8, d/8], [d,d/2], [d,3*d/4], [d,d]]
-
-velocities = [[0, speedfactor*vmax, speedfactor*vmax],
-              [speedfactor*vmax, speedfactor*vmax, speedfactor*vmax],
-              [speedfactor*vmax, speedfactor*vmax, speedfactor*vmax],
-              [speedfactor*vmax, speedfactor*vmax, speedfactor*vmax],
-              [speedfactor*vmax, speedfactor*vmax, speedfactor*vmax],
-              [speedfactor*vmax, speedfactor*vmax, 0]]
-
 #K = [[0,0], [d/2,0], [d,0]]
 #velocities = [[0, speedfactor*vmax, speedfactor*vmax],
 #              [speedfactor*vmax, speedfactor*vmax, 0]]
 
-K = [[15.0, 30.0], 
+'''K = [[15.0, 30.0], 
 [55.125937843434606, 30.22586520809004],
 [114.03502828396766, 60.982002063560756],
 [155.64970685205066, 113.4795460065194],
 [229.6914076809775, 107.11620734676683],
-[225.90825508387906, 29.695586986443992]]
+[225.90825508387906, 29.695586986443992]]'''
+
+#read waypoints from profile.csv
+with open("profile.csv","r") as csv:
+    K = []
+    splitLine = csv.read().splitlines()
+    for x in splitLine:
+        K.append(x.split(","))
+    for x in K:
+        K[K.index(x)] = map(float,x)
 
 defaultVelocities = True #Do you want to use the default velocity list
 if defaultVelocities:
