@@ -348,7 +348,7 @@ elif "-f" in sys.argv:
 else:
         # root = Tkinter.Tk()
         # CsvPath = tkFileDialog.Open(root=root)  Broken for some reason
-        warnings.warn("Missing -f or --file command. \n Usage: complete path to waypoint csv file ")
+        warnings.warn("Missing -f or --file command. \n Usage: Enter complete path to waypoint csv file ")
         CsvPath = "profile.csv"
 
 #read waypoints from profile.csv
