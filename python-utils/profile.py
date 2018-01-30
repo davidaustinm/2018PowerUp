@@ -1,5 +1,6 @@
 from math import *
 import sys
+import warnings
 
 ## state variables named assuming positive acceleration
 
@@ -339,8 +340,19 @@ speedfactor = 0.4
 [229.6914076809775, 107.11620734676683],
 [225.90825508387906, 29.695586986443992]]'''
 
+#Get file command line argument and store it to CsvPath
+if "--file" in sys.argv:
+    CsvPath = sys.argv[sys.argv.index("--file") + 1]
+elif "-f" in sys.argv:
+    CsvPath = sys.argv[sys.argv.index("-f") + 1]
+else:
+        # root = Tkinter.Tk()
+        # CsvPath = tkFileDialog.Open(root=root)  Broken for some reason
+        warnings.warn("Missing -f or --file command. \n Usage: complete path to waypoint csv file ")
+        CsvPath = "profile.csv"
+
 #read waypoints from profile.csv
-with open("profile.csv","r") as csv:
+with open(str(CsvPath),"r") as csv:
     K = []
     splitLine = csv.read().splitlines()
     for x in splitLine:
